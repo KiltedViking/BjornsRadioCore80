@@ -1,6 +1,12 @@
+using BjornsRadioCore80.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<BjornsRadioDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConBjornsRadioDb"));
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
